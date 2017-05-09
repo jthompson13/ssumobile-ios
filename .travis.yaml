@@ -1,0 +1,11 @@
+
+language: objective-c
+osx_image: xcode8.3
+xcode_workspace: SSUMobile.xcworkspace
+xcode_scheme: 
+    - SSUMobile - Mock Config
+    - SSUMobile Release
+
+before_install:
+  - gem install cocoapods
+  - travis_wait pod repo update --silent
