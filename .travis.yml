@@ -2,9 +2,11 @@
 language: objective-c
 osx_image: xcode8.3
 xcode_workspace: SSUMobile.xcworkspace
-xcode_scheme: 
-    - SSUMobile - Mock Config
-    - SSUMobile Release
+
+script:
+  - xcodebuild clean build -sdk iphonesimulator -workspace SSUMobile.xcworkspace -scheme "SSUMobile - Mock Config" CODE_SIGNING_REQUIRED=NO
+  - xcodebuild clean build -sdk iphonesimulator -workspace SSUMobile.xcworkspace -scheme "SSUMobile Release" CODE_SIGNING_REQUIRED=NO
+
 
 before_install:
   - gem install cocoapods
