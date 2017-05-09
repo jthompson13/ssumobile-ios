@@ -1,0 +1,10 @@
+
+language: objective-c
+osx_image: xcode8.3
+
+script:
+  - xcodebuild clean build -sdk iphonesimulator -workspace SSUMobile.xcworkspace -scheme "SSUMobile - Mock Config" ONLY_ACTIVE_ARCH=NO -destination "platform=iOS Simulator,name=iPhone 7" build test | xcpretty -c
+
+before_install:
+  - gem install cocoapods
+  - travis_wait pod repo update --silent
