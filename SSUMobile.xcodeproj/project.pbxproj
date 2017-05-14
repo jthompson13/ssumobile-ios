@@ -139,7 +139,6 @@
 		07FD090E1BA084E1005C38DD /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FD090D1BA084E1005C38DD /* Resources.xcassets */; };
 		07FD09111BA08548005C38DD /* Map.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07FD09101BA08548005C38DD /* Map.xcassets */; };
 		301B08B71EB1583000C0769E /* SSURadioCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 301B08B61EB1583000C0769E /* SSURadioCalendarViewController.m */; };
-		32597B97B76EBBC89FACB276 /* Pods_SSUMobile_SSUMobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ABF172766A61AEA3D7C928 /* Pods_SSUMobile_SSUMobileTests.framework */; };
 		414E70C1B66B29136704BB07 /* Pods_SSUMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15D260ED7782DBBDDB90284 /* Pods_SSUMobile.framework */; };
 		7801C3C116E6FE4600119B63 /* SSUMapBuildingPerimeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7801C3C016E6FE4600119B63 /* SSUMapBuildingPerimeter.m */; };
 		7801C3D316E8233900119B63 /* SSUMapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7801C3D216E8233700119B63 /* SSUMapLocation.m */; };
@@ -584,7 +583,6 @@
 				C4995B1116B1274300168521 /* Foundation.framework in Frameworks */,
 				C4995B1216B1274300168521 /* CoreData.framework in Frameworks */,
 				FB0C64796E6A63FF0E4176E4 /* Pods_SSUMobileTests.framework in Frameworks */,
-				32597B97B76EBBC89FACB276 /* Pods_SSUMobile_SSUMobileTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2202,7 +2200,6 @@
 				"BUNDLE_LOADER[arch=*]" = "$(BUILT_PRODUCTS_DIR)/SSUMobile.app/SSUMobile";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 					"$(inherited)",
 				);
@@ -2228,7 +2225,6 @@
 				"BUNDLE_LOADER[arch=*]" = "$(BUILT_PRODUCTS_DIR)/SSUMobile.app/SSUMobile";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 					"$(inherited)",
 				);
