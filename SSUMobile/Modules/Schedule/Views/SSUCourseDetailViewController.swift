@@ -41,25 +41,9 @@ class SSUCourseDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        /*
-         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-         
-         let resultViewController = storyBoard.instantiateViewController(withIdentifier: "ClassScheduleTVC") as! ClassScheduleTableViewController
-         
-         self.present(resultViewController, animated:true, completion:nil)
-         */
-        title = classData?.department
-        //        backgroundImageView = UIImageView(frame: self.view.bounds)
-        //        backgroundImageView?.image = UIImage(named: "DetailsBackgroundImage")
-        //        self.view.addSubview(backgroundImageView!)
- 
-        //_addOrRemovebarButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SSUScheduleTableViewController.doStuff))
-
-       // buildingTapGesture = UITapGestureRecognizer(target: self._building, action: #selector(self.handleBuildingClick(_:)))
-        //personTapGesture = UITapGestureRecognizer(target: self._instructor, action: #selector(self.handlePersonClick(_:)))
         
-        //        _building.addGestureRecognizer(tapGesture!)
+        title = classData?.department
+
         roundViewCorners()
         buttonSetup()
         displayClassData()
@@ -126,19 +110,20 @@ class SSUCourseDetailViewController: UIViewController {
         let fetchRequest: NSFetchRequest<SSUSchedule> = SSUSchedule.fetchRequest()
 
         let x = (classData?.id)!
-        let n = NSNumber(value: x)
-        let pred: NSPredicate = NSPredicate(format: "id = %i", n as NSNumber)
+        let n: Int = Int(x)
+        let pred: NSPredicate = NSPredicate(format: "id = %i", n)
         
         fetchRequest.predicate = pred
         do {
             let responce = try context.fetch(fetchRequest)
             if((responce.isEmpty)) {
                 return true
+            } else {
+                return false
             }
             
         } catch {
             SSULogging.logError("Error fetching schedule: \(error)")
-            
             
         }
         

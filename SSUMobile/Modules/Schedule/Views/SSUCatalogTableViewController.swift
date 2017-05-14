@@ -73,18 +73,15 @@ class SSUCatalogTableViewController: UITableViewController, UISearchResultsUpdat
     }
     
     private func refresh() {
-        //SSUScheduleModule.instance.updateData({
-            self.loadSchedule()
-        //})
+        self.loadCatalog()
     }
     
-    private func loadSchedule() {
+    private func loadCatalog() {
         let fetchRequest: NSFetchRequest<SSUCourse> = SSUCourse.fetchRequest()
         let sortDescriptor1 = NSSortDescriptor(key: "subject", ascending: true)
         let sortDescriptor2 = NSSortDescriptor(key: "catalog", ascending: true)
-        //let sortDescriptor3 = NSSortDescriptor(key: "component", ascending: true)
-        let sortDescriptor4 = NSSortDescriptor(key: "section", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2, sortDescriptor4]
+        let sortDescriptor3 = NSSortDescriptor(key: "section", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2, sortDescriptor3]
         
         do {
             catalog = try context.fetch(fetchRequest)
@@ -187,7 +184,6 @@ class SSUCatalogTableViewController: UITableViewController, UISearchResultsUpdat
     }
     
     func searchFor(text:String?){
-        //        let searchTerms = text?.removingWhitespaces()
         if (catalog == nil) {
             return
         }
