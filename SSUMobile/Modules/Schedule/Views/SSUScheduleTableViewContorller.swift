@@ -8,11 +8,6 @@
 
 import Foundation
 
-// basic features   -Done
-// need to make a "details" view for each table cell and a button to access each one    -Done
-// need to make an edit button to delete classes    -Done
-// need to add an extension to a search page
-// add in "break" UIViews between non-back-to-back classes (if time permits)
 class SSUScheduleTableViewController: UITableViewController  {
     
     var context: NSManagedObjectContext = SSUScheduleModule.instance.context!
@@ -28,20 +23,7 @@ class SSUScheduleTableViewController: UITableViewController  {
             self.title = title
             self.courses = courses
             self.count = courses.count
-            //addOrIgnore(course)
-            
         }
-        
-//        @discardableResult
-//        mutating func addOrIgnore(_ course: SSUCourse) -> [SSUCourse] {
-//            if ( !(courses.contains(where: { $0.id == course.id })) ) {
-//                self.courses.append(course)
-//                self.count = self.count + 1
-//                
-//                return courses
-//            }
-//        }
-        
     }
 
     
@@ -62,7 +44,7 @@ class SSUScheduleTableViewController: UITableViewController  {
         let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SSUScheduleTableViewController.goToCatalog))
         self.navigationItem.rightBarButtonItem = newButton
         
-        refresh()
+        //refresh()
     }
     
     @IBAction func goToCatalog(sender: AnyObject) {
@@ -84,6 +66,7 @@ class SSUScheduleTableViewController: UITableViewController  {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        refresh()
         self.tableView.flashScrollIndicators()
     }
     
@@ -113,7 +96,7 @@ class SSUScheduleTableViewController: UITableViewController  {
             SSULogging.logError("Error fetching schedule: \(error)")
 
         }
-        getCoursesInSchedule()
+        self.getCoursesInSchedule()
 
         DispatchQueue.main.async {
             self.reloadScheduleTableView()
@@ -130,7 +113,7 @@ class SSUScheduleTableViewController: UITableViewController  {
         var Wednessday = [SSUCourse]()
         var Thrusday = [SSUCourse]()
         var Friday = [SSUCourse]()
-        
+        sects = []
         for course in schedule! {
             if let aCourse = SSUCourseBuilder.course(withID: Int(course.id), inContext: context),
                 let days = getDays(aCourse) {

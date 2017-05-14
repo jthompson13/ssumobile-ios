@@ -51,21 +51,34 @@ class SSUCourseDetailViewController: UIViewController {
     
     @IBAction func button(_ sender: Any) {
         if enrolled {
-            let c = NSEntityDescription.insertNewObject(forEntityName: "SSUSchedule", into: context) as! SSUSchedule
-            c.id = (classData?.id)!
-            
+            let fetchRequest: NSFetchRequest<SSUSchedule> = SSUSchedule.fetchRequest()
+            let pred = NSPredicate(format: "id = %i", Int((classData?.id)!))
+            fetchRequest.predicate = pred
             do{
+                let result = try context.fetch(fetchRequest)
+                for course in result {
+                    context.delete(course)
+                }
                 try context.save()
-            }catch {}
+            }catch {
+                SSULogging.logError("Error deleting course: \(error)")
+                return
+            }
             
         } else {
             let c = NSEntityDescription.insertNewObject(forEntityName: "SSUSchedule", into: context) as! SSUSchedule
             c.id = (classData?.id)!
-            
             do{
                 try context.save()
-            }catch {}
+            }catch {
+                SSULogging.logError("Error saving new course: \(error)")
+                return
+            }
+            
+            
         }
+        
+        buttonSetup()
     }
     
     
@@ -121,10 +134,8 @@ class SSUCourseDetailViewController: UIViewController {
             } else {
                 return false
             }
-            
         } catch {
             SSULogging.logError("Error fetching schedule: \(error)")
-            
         }
         
         return false
@@ -215,6 +226,17 @@ class SSUCourseDetailViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "building"{
+//            if let f_id = classData?.facility_id{
+//                let add_details = SSUCourseDetailHelper.location(f_id)
+//                let Building = add_details.building
+//                let Room = add_details.room
+//                
+//                let building = SSUDirectoryBuilder.building(withName: (Building)!, in: SSUDirectoryModule.instance.context)
+//                let controller = segue.destination as! SSUBuildingViewController
+//                controller.loadObject(self.building, in: self.building?.managedObjectContext)
+//            }
+        }
 //        if segue.identifier == "building"{
 //            let building: SSUBuilding = SSUDirectoryBuilder.building(withID: (classData?.building)!, in: SSUDirectoryModule.instance.context)
 //            let controller: SSUDirectoryViewController = segue.destination as! SSUDirectoryViewController

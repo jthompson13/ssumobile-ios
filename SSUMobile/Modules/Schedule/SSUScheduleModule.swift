@@ -50,9 +50,10 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     }
     
     func updateCatalog(completion: (() -> Void)? = nil) {
-        let date = getDate() ?? NSDate()
+        let keyDate = getDate() ?? NSDate()
+        let now = NSDate()
 
-        if Calendar.current.isDate(date as Date, inSameDayAs:NSDate() as Date) {
+        if !Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {
 
             SSUMoonlightCommunicator.getJSONFromPath("catalog/course") { (response, json, error) in
                 if let error = error {
