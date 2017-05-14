@@ -26,9 +26,15 @@
 - (SSUBuilding *) buildingWithID:(NSString*)buildingID;
 - (SSUSchool *) schoolWithID:(NSString *)schoolID;
 
+- (SSUBuilding *) buildingWithName:(NSString*)buildingName;
+- (SSUPerson *) personWithFirstName:(NSString*)personFirstName andLastName:(NSString*)personLastName;
+
 + (SSUPerson *) personWithID:(NSString*)personID inContext:(NSManagedObjectContext*)context;
 + (SSUDepartment *) departmentWithID:(NSString*)departmentID inContext:(NSManagedObjectContext*)context;
 + (SSUBuilding *) buildingWithID:(NSString*)buildingID inContext:(NSManagedObjectContext*)context;
 + (SSUSchool *) schoolWithID:(NSString *)schoolID inContext:(NSManagedObjectContext *)context;
+
++ (SSUPerson *) personWithFirstName:(NSString*)personFirstName andLastName:(NSString*)personLastName inContext:(NSManagedObjectContext*)context;
++ (SSUBuilding *) buildingWithName:(NSString*)buildingName inContext:(NSManagedObjectContext*)context;
 
 @end

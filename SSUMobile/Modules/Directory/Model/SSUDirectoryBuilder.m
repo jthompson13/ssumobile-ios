@@ -43,6 +43,63 @@ NSString * const SSUDirectorySchoolKeyBuildingID = @"building";
 
 @implementation SSUDirectoryBuilder
 
+
+
+
+
+
+- (SSUPerson *) personWithFirstName:(NSString *)personFirstName andLastName:(NSString *)personLastName {
+    return [[self class] personWithFirstName:personFirstName andLastName:personLastName inContext:self.context];
+}
+
++ (SSUPerson *) personWithFirstName:(NSString *)personFirstName andLastName:(NSString *)personLastName inContext:(NSManagedObjectContext *)context {
+    //    if (personID.integerValue == 0)
+    //        return nil;
+    if ([personFirstName  isEqual: @""] && [personLastName  isEqual: @""]){
+        return nil;
+    }
+    NSPredicate* fnPredicate = [NSPredicate predicateWithFormat:@"%K = %@", SSUDirectoryPersonKeyFirstName, personFirstName];
+    NSPredicate* lnPredicate = [NSPredicate predicateWithFormat:@"%K = %@", SSUDirectoryPersonKeyLastName, personLastName];
+    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[fnPredicate, lnPredicate]];
+    
+    BOOL created = NO;
+    SSUPerson* person = (SSUPerson*)[self objectWithEntityName:SSUDirectoryEntityPerson predicate:predicate context: context entityWasCreated:&created];
+    // SSUPerson * person = (SSUPerson*)[self objectWithEntityName:SSUDirectoryEntityPerson ID:personID context:context entityWasCreated:&created];
+    if (created) {
+        person.id = @"";
+        person.sectionName = SSUDirectoryCategoryPeople;
+        person.firstName = personFirstName;
+        person.lastName = personLastName;
+        person.displayName = [NSString stringWithFormat:@"%@ %@", personFirstName, personLastName];
+    }
+    
+    return person;
+}
+
+- (SSUBuilding*) buildingWithName:(NSString *)buildingName{
+    return [[self class] buildingWithName:buildingName inContext:self.context];
+}
+
++ (SSUBuilding*) buildingWithName:(NSString *)buildingName inContext:(NSManagedObjectContext *)context{
+    if ([buildingName isEqual:@""])
+        return nil;
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K = %@", SSUDirectoryBuildingKeyName, buildingName];
+    BOOL created = NO;
+    SSUBuilding* building = (SSUBuilding*)[self objectWithEntityName:SSUDirectoryEntityBuilding predicate:predicate context:context entityWasCreated:&created];
+    if (created) {
+        building.id = @"";
+        building.sectionName = SSUDirectoryCategoryBuildings;
+        building.name = buildingName;
+        building.displayName = buildingName;
+    }
+    
+    return building;
+}
+
+
+
+
+
 - (SSUPerson *) personWithID:(NSString *)personID {
     return [[self class] personWithID:personID inContext:self.context];
 }

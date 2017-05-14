@@ -12,6 +12,8 @@
 #import "SSUSettingsConstants.h"
 #import "SSUResourcesConstants.h"
 #import "SSUResourcesBuilder.h"
+#import "SSUBuildingViewController.h"
+#import "SSUPersonViewController.h"
 
 // Pods
 @import Kingfisher;

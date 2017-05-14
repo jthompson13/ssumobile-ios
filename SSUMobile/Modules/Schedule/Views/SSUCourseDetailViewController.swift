@@ -13,12 +13,15 @@ import UIKit
 class SSUCourseDetailViewController: UIViewController {
     var context: NSManagedObjectContext = SSUScheduleModule.instance.context!
     
+    @IBOutlet weak var buildingButton: UIButton!
     var classData: SSUCourse?
     var backgroundImageView: UIImageView?
     // var building: SSUBuilding?
     var buildingTapGesture: UITapGestureRecognizer?
     var personTapGesture: UITapGestureRecognizer?
     var enrolled = false
+    
+    var building: SSUBuilding?
     
     // Outlets to storyboard
     @IBOutlet weak var departmentView: UIView!
@@ -44,6 +47,7 @@ class SSUCourseDetailViewController: UIViewController {
         
         title = classData?.department
 
+        buildingButton.addTarget(self, action: #selector(handleBuildingClick), for: .touchUpInside)
         roundViewCorners()
         buttonSetup()
         displayClassData()
@@ -93,7 +97,7 @@ class SSUCourseDetailViewController: UIViewController {
     
     
     
-    func handleBuildingClick(sender: UITapGestureRecognizer){
+    func handleBuildingClick(/*sender: UITapGestureRecognizer*/){
         performSegue(withIdentifier: "building", sender: self)
     }
     
@@ -227,35 +231,19 @@ class SSUCourseDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "building"{
-//            if let f_id = classData?.facility_id{
-//                let add_details = SSUCourseDetailHelper.location(f_id)
-//                let Building = add_details.building
-//                let Room = add_details.room
-//                
-//                let building = SSUDirectoryBuilder.building(withName: (Building)!, in: SSUDirectoryModule.instance.context)
-//                let controller = segue.destination as! SSUBuildingViewController
-//                controller.loadObject(self.building, in: self.building?.managedObjectContext)
-//            }
+            if let f_id = classData?.facility_id{
+                let add_details = SSUCourseDetailHelper.location(f_id)
+                let Building = add_details.building
+                let Room = add_details.room
+            
+                building = SSUDirectoryBuilder.building(withName: (Building)!, in: SSUDirectoryModule.instance.context)
+                let controller = segue.destination as! SSUBuildingViewController
+                controller.loadObject(self.building, in: self.building?.managedObjectContext)
+            }
         }
-//        if segue.identifier == "building"{
-//            let building: SSUBuilding = SSUDirectoryBuilder.building(withID: (classData?.building)!, in: SSUDirectoryModule.instance.context)
-//            let controller: SSUDirectoryViewController = segue.destination as! SSUDirectoryViewController
-//            let predicate = NSPredicate(format: "building = %@", building)
-//            controller.defaultPredicate = predicate
-//            controller.entities = [SSUDirectoryEntityPerson, SSUDirectoryEntityDepartment, SSUDirectoryEntitySchool]
-//            controller.loadEntityName(SSUDirectoryEntityDepartment, using: nil)
-//        }
-//        else if segue.identifier == "person"{
-//            let person: SSUPerson = SSUDirectoryBuilder.personWithFirstName((classData?.first_name)!, (classData?.last_name)! , SSUDirectoryModule.instance.context)
-//            let controller: SSUDirectoryViewController = segue.destination as! SSUDirectoryViewController
-//            let predicate = NSPredicate(format: "person = %@", person)
-//            controller.defaultPredicate = predicate
-//            controller.entities = [SSUDirectoryEntityDepartment, SSUDirectoryEntityBuilding, SSUDirectoryEntitySchool]
-//            controller.loadEntityName(SSUDirectoryEntityDepartment, using: nil)
-//        }
-//        else{
-//            print("Unrecognized segue: \(segue)")
-//        }
+        else{
+            print("Unrecognized segue: \(segue)")
+        }
 
     }
     
