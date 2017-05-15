@@ -202,12 +202,13 @@ class SSUCatalogTableViewController: UITableViewController, UISearchResultsUpdat
                 (item:SSUCourse) in
                 return item.catalog?.lowercased().range(of:searchTerms) != nil ||
                     item.department?.lowercased().range(of:searchTerms) != nil ||
-                    item.last_name?.lowercased().range(of:searchTerms) != nil ||
+                     item.last_name?.lowercased().range(of:searchTerms) != nil ||
+                       item.subject?.lowercased().range(of:searchTerms) != nil ||
+                    item.start_time?.lowercased().range(of:searchTerms) != nil ||
+                      item.end_time?.lowercased().range(of:searchTerms) != nil ||
                     item.first_name?.lowercased().range(of:searchTerms) != nil ||
-                    item.descript?.lowercased().range(of:searchTerms) != nil
+                      item.descript?.lowercased().range(of:searchTerms) != nil
             }))
-            
-            
             setArray.append(innerSet)
         }
         
