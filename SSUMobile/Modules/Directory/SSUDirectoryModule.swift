@@ -30,10 +30,10 @@ class SSUDirectoryModule: SSUCoreDataModuleBase, SSUModuleUI, SSUSpotlightSuppor
     
     func updateData(_ completion: (() -> Void)? = nil) {
         SSULogging.logDebug("Update Directory")
-        updateBuildings {
+        self.updateBuildings {
             self.updateSchools {
                 self.updateDepartments {
-                    self.updateBuildings {
+                    self.updatePeople() {
                         completion?()
                     }
                 }

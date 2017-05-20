@@ -50,7 +50,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     }
     
     func updateCatalog(completion: (() -> Void)? = nil) {
-        let keyDate = getDate() ?? NSDate()
+        let keyDate = getDate() ?? NSDate(timeIntervalSince1970: 12)
         let now = NSDate()
 
         if !Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {

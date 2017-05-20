@@ -100,7 +100,6 @@ class SSUCourseBuilder: SSUMoonlightBuilder {
         return ("", nil)
     }
     
-    
     override func build(_ results: Any!) {
         SSULogging.logDebug("Building events")
         let arr = results as? [Any]
@@ -127,14 +126,14 @@ class SSUCourseBuilder: SSUMoonlightBuilder {
                 course.subject = entry[Keys.subject].string
                 course.catalog = entry[Keys.catalog].string
                 course.section = entry[Keys.section].string
-                course.descript = entry[Keys.designation].string
+                course.descript = entry[Keys.descript].string
                 course.component = entry[Keys.component].string
                 course.max_units = entry[Keys.max_units].string
                 course.min_units = entry[Keys.min_units].string
                 course.class_type = entry[Keys.class_type].string
                 course.designation = entry[Keys.designation].string
-                course.start_time = entry[Keys.start_time].string
-                course.end_time = entry[Keys.end_time].string
+                course.start_time = SSUCourseDetailHelper.timeConverter(entry[Keys.start_time].string)
+                course.end_time = SSUCourseDetailHelper.timeConverter(entry[Keys.end_time].string)
                 course.meeting_pattern = entry[Keys.meeting_pattern].string
                 course.instructor_id = entry[Keys.instructor_id].string
                 course.first_name =  entry[Keys.first_name].string

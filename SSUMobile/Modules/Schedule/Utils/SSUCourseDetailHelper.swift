@@ -8,6 +8,25 @@
 
 import UIKit
 
+extension String
+{
+    subscript (i: Int) -> Character {
+        return self[self.index(self.startIndex, offsetBy: i)]
+    }
+    
+    // for convenience we should include String return
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = self.index(self.startIndex, offsetBy: r.lowerBound)
+        let end = self.index(self.startIndex, offsetBy: r.upperBound)
+        
+        return self[start...end]
+    }
+}
+
 class SSUCourseDetailHelper {
      struct details {
         var building: String?
@@ -17,6 +36,32 @@ class SSUCourseDetailHelper {
             if let buld = b { building = buld }
             if let rm = r { room = rm }
         }
+    }
+    
+    static func timeConverter(_ time: String?) -> String? {
+        guard let time = time else {
+            return nil
+        }
+        
+        var hr = 0
+        var min = ""
+        var twelveHr = ""
+        
+        if time [0] == "0" {
+            hr = Int(time[1..<1])!
+        } else {
+            hr = Int(time[0..<1])!
+        }
+        min = time[2..<4]
+        
+        if hr > 12 {
+            hr = hr - 12
+            twelveHr = String(hr) + min + " PM"
+        } else {
+            twelveHr = String(hr) + min + " AM"
+        }
+        
+        return twelveHr
     }
     
     

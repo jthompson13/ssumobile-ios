@@ -231,10 +231,9 @@ class SSUCourseDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "building"{
-            if let f_id = classData?.facility_id{
+            if let f_id = classData?.facility_id {
                 let add_details = SSUCourseDetailHelper.location(f_id)
                 let Building = add_details.building
-                let Room = add_details.room
             
                 building = SSUDirectoryBuilder.building(withName: (Building)!, in: SSUDirectoryModule.instance.context)
                 let controller = segue.destination as! SSUBuildingViewController

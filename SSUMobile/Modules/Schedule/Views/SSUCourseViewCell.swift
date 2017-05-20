@@ -42,7 +42,7 @@ class SSUCourseViewCell: UITableViewCell {
     func stringForCell(){
         let instructor = "\(course?.first_name ?? "Staff") \(course?.last_name ?? "")"
         ClassName.text = "\(course?.subject ?? "[N/A]") \(course?.catalog ?? "[N/A]") - \(course?.component ?? "[N/A]")"
-        TimeFrame.text = "\(course?.start_time ?? "[N/A]")-\(course?.end_time ?? "[M/A]")"
+        TimeFrame.text = "\(course?.start_time ?? "[N/A]") - \(course?.end_time ?? "[M/A]")"
         Professor.text = instructor
     }
     
