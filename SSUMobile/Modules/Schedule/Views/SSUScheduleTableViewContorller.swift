@@ -39,17 +39,14 @@ class SSUScheduleTableViewController: UITableViewController  {
             backgroundImageView = UIImageView(image: image)
             self.tableView.backgroundView = backgroundImageView
         }
-    
-        
+
         let newButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SSUScheduleTableViewController.goToCatalog))
         self.navigationItem.rightBarButtonItem = newButton
-        
-        //refresh()
     }
     
     @IBAction func goToCatalog(sender: AnyObject) {
         guard let vc = UIStoryboard(name:"Schedule", bundle:nil).instantiateViewController(withIdentifier: "catalogView") as? SSUCatalogTableViewController else {
-                print("Could not instantiate view controller with identifier of type SecondViewController")
+                SSULogging.logError("Could not instantiate view controller with identifier of type catalogView")
                 return
             }
 
@@ -229,7 +226,6 @@ class SSUScheduleTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         // header.textLabel?.font = UIFont(name: "Futura", size: 11)
-        // header.backgroundColor = UIColorFromHex(rgbValue: 0xf7f7f7)
         header.contentView.backgroundColor = UIColorFromHex(rgbValue: 0x215EA8)
         header.textLabel?.textColor = UIColorFromHex(rgbValue: 0xFFFFFF)
         header.textLabel?.textAlignment = .center
@@ -247,26 +243,12 @@ class SSUScheduleTableViewController: UITableViewController  {
             let cell = sender as! SSUCourseViewCell
             if let indexPath = tableView.indexPath(for: cell), let oldClass = sects?[(indexPath.section)].courses[(indexPath.row)] {
                 
-                print("CSTVC:\tprepare:\tsection = \((indexPath.section))\trow = \((indexPath.row))")
+                SSULogging.logDebug("CSTVC:\tprepare:\tsection = \((indexPath.section))\trow = \((indexPath.row))")
 
                 let detailsVC = segue.destination as! SSUCourseDetailViewController
                 detailsVC.passClassData(oldClass)
             }
-            
         }
-        
-//        if segue.identifier == "scheduleToCatalog" {
-//            guard let vc = UIStoryboard(name:"Schedule", bundle:nil).instantiateViewController(withIdentifier: "catalogView") as? SSUCatalogTableViewController else {
-//                print("Could not instantiate view controller with identifier of type SecondViewController")
-//                return
-//            }
-//            
-//            
-//            self.navigationController?.pushViewController(vc, animated:true)
-////            if let catalog = segue.destination as? SSUCatalogTableViewController {
-////                catalog.title = "HI"
-////            }
-//        }
     }
     
     

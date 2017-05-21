@@ -1655,7 +1655,7 @@
 				TargetAttributes = {
 					C4995ADA16B1274200168521 = {
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;

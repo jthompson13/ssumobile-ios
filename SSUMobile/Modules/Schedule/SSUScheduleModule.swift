@@ -35,7 +35,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     func updateData(_ completion: (() -> Void)? = nil) {
         if SSUScheduleModule.loading { completion?() }
         SSUScheduleModule.loading = true
-        SSULogging.logDebug("Update Catalog")
+        SSULogging.logDebug("Updating Catalog")
         self.updateCatalog {
             completion?()
         }
@@ -53,7 +53,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
         let keyDate = getDate() ?? NSDate(timeIntervalSince1970: 12)
         let now = NSDate()
 
-        if !Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {
+        if Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {
 
             SSUMoonlightCommunicator.getJSONFromPath("catalog/course") { (response, json, error) in
                 if let error = error {
@@ -119,9 +119,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
         let builder = SSUCourseBuilder()
         builder.context = backgroundContext
         backgroundContext.perform {
-            
             builder.build(json)
-            SSULogging.logDebug("Finish building Schedule")
             completion?()
         }
     }

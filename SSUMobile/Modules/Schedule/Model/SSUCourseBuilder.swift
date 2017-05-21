@@ -90,7 +90,7 @@ class SSUCourseBuilder: SSUMoonlightBuilder {
         if ((results as? Int) != nil) { return ("", nil) }
         let data = JSON(results)
         
-        if let next = data.dictionaryValue["next"]?.string {
+        if let next = data["next"].string {
             if( next == "null" ) { return ("", nil)}
             if let arr = data.dictionaryValue["results"]?.arrayValue {
                 return (next, arr)
@@ -101,7 +101,7 @@ class SSUCourseBuilder: SSUMoonlightBuilder {
     }
     
     override func build(_ results: Any!) {
-        SSULogging.logDebug("Building events")
+        SSULogging.logDebug("Building Catalog")
         let arr = results as? [Any]
         
         for page in arr! {
@@ -153,7 +153,7 @@ class SSUCourseBuilder: SSUMoonlightBuilder {
             }
         }
         saveContext()
-        SSULogging.logDebug("Finish building catalog")
+        SSULogging.logDebug("Finished building Catalog")
     }
 
 
