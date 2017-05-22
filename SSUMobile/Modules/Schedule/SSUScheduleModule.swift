@@ -16,6 +16,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     static var jData: [Any] = []
     static var nextAddress = ""
     static var loading = false;
+    static var abortDownload = false;
     
     // MARK: SSUModule
     
@@ -35,10 +36,38 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     func updateData(_ completion: (() -> Void)? = nil) {
         if SSUScheduleModule.loading { completion?() }
         SSUScheduleModule.loading = true
+        
         SSULogging.logDebug("Updating Catalog")
-        self.updateCatalog {
+        
+        let keyDate = getDate() ?? NSDate(timeIntervalSince1970: 12)
+        let now = NSDate()
+        
+        if !Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {
+            largeDataWarningMessage({
+                completion?()
+            })
+        } else {
             completion?()
         }
+ 
+    }
+    
+    private func largeDataWarningMessage(_ completion: (() -> Void)? = nil){
+        let alert = UIAlertController(title: "Download Warning",
+                                      message: "SSU Mobile would like to download the course catalog. Wifi is recommended! Click OK to continue or Cancel to abort",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.updateCatalog {
+                completion?()
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            completion?()
+            
+        }))
+        
+        UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true)
     }
     
     private func getDate() -> NSDate? {
@@ -50,24 +79,16 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     }
     
     func updateCatalog(completion: (() -> Void)? = nil) {
-        let keyDate = getDate() ?? NSDate(timeIntervalSince1970: 12)
-        let now = NSDate()
-
-        if Calendar.current.isDate(keyDate as Date, inSameDayAs:now as Date) {
-
-            SSUMoonlightCommunicator.getJSONFromPath("catalog/course") { (response, json, error) in
-                if let error = error {
-                    SSULogging.logError("Error while attemping to update Schedule Classes: \(error)")
+        SSUMoonlightCommunicator.getJSONFromPath("catalog/course") { (response, json, error) in
+            if let error = error {
+                SSULogging.logError("Error while attemping to update Schedule Classes: \(error)")
+                completion?()
+            } else {
+                self.setDate(date: NSDate())
+                self.getNext(data: json) {
                     completion?()
-                } else {
-                    self.getNext(data: json) {
-                        completion?()
-                    }
                 }
             }
-            setDate(date: NSDate())
-        } else {
-            completion?()
         }
     }
     
