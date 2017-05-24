@@ -208,14 +208,10 @@ class SSUScheduleTableViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseViewCell", for: indexPath)
-        
-        if let theCell = cell as? SSUCourseViewCell{
-            theCell.transferClassInfo(course: (sects?[indexPath.section].courses[indexPath.row])!)
-            // theCell.layoutMargins = UIEdgeInsets.zero
-            // theCell.separatorInset = UIEdgeInsets.zero
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CourseViewCell", for: indexPath) as? SSUCourseViewCell else{
+            return UITableViewCell()
         }
-        
+        cell.transferClassInfo(course: (sects?[indexPath.section].courses[indexPath.row])!)
         return cell
     }
     
@@ -225,7 +221,6 @@ class SSUScheduleTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
-        // header.textLabel?.font = UIFont(name: "Futura", size: 11)
         header.contentView.backgroundColor = UIColorFromHex(rgbValue: 0x215EA8)
         header.textLabel?.textColor = UIColorFromHex(rgbValue: 0xFFFFFF)
         header.textLabel?.textAlignment = .center

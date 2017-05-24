@@ -17,7 +17,7 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     static var nextAddress = ""
     static var loading = false;
     static var abortDownload = false;
-    
+    static let initstr = "https://moonlight.cs.sonoma.edu/api/v1/catalog/course/?term=2177"
     // MARK: SSUModule
     
     var title: String {
@@ -79,7 +79,9 @@ final class SSUScheduleModule: SSUCoreDataModuleBase, SSUModuleUI {
     }
     
     func updateCatalog(completion: (() -> Void)? = nil) {
-        SSUMoonlightCommunicator.getJSONFromPath("catalog/course") { (response, json, error) in
+        let url = URL(string: SSUScheduleModule.initstr)
+        
+        SSUCommunicator.getJSONFrom(url!) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Schedule Classes: \(error)")
                 completion?()
