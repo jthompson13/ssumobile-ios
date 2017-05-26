@@ -15,7 +15,7 @@
 #import "SSUResourcesSection.h"
 #import "SSUMobile-Swift.h"
 
-@interface SSUResourcesViewController () <UIActionSheetDelegate,NSFetchedResultsControllerDelegate>
+@interface SSUResourcesViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSArray * sectionInfo;
 @property (nonatomic, strong) NSIndexPath * selectedIndexPath;
@@ -97,57 +97,49 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     SSUResourcesEntry * resource = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    self.selectedIndexPath = indexPath;
-    UIActionSheet * actionSheet = nil;
-    if (resource.phone && resource.url) {
-        // Both phone and url
-        NSString * phoneTitle = [NSString stringWithFormat:@"Call %@",resource.phone];
-        NSString * urlTitle = @"Open in Safari";
-        actionSheet = [[UIActionSheet alloc] initWithTitle:resource.name
-                                                  delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:phoneTitle,urlTitle, nil];
-    }
-    else if (resource.phone && !resource.url) {
-        // Phone only
-        NSString * phoneTitle = [NSString stringWithFormat:@"Call %@",resource.phone];
-        actionSheet = [[UIActionSheet alloc] initWithTitle:resource.name
-                                                  delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:phoneTitle, nil];
-    }
-    else if (resource.url && !resource.phone) {
-        // URL only
-        NSString * urlTitle = @"Open in Safari";
-        actionSheet = [[UIActionSheet alloc] initWithTitle:resource.name
-                                                  delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                    destructiveButtonTitle:nil
-                                         otherButtonTitles:urlTitle, nil];
-    }
-    else {
-        // Contains neither phone nor URL
+    if (resource.phone == nil && resource.url == nil) {
+        SSULogError(@"A resource was selected but has neither a phone number nor website URL: %@", resource);
         return;
     }
-    [actionSheet showInView:self.tableView];
+    self.selectedIndexPath = indexPath;
+    UIAlertController * controller = [UIAlertController alertControllerWithTitle:resource.name
+                                                                         message:nil
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    [controller addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+    
+    if (resource.phone != nil) {
+        // Both phone and url
+        NSString * phoneTitle = [NSString stringWithFormat:@"Call %@",resource.phone];
+        [controller addAction:[UIAlertAction actionWithTitle:phoneTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self callPhoneNumberOfResource:resource];
+        }]];
+    }
+    if (resource.url != nil) {
+        NSString * urlTitle = @"Open in Safari";
+        [controller addAction:[UIAlertAction actionWithTitle:urlTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self openURLOfResource:resource];
+        }]];
+    }
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
-- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    NSString * title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    SSUResourcesEntry * resource = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
-    NSURL * url = nil;
-    if ([title isEqualToString:@"Open in Safari"]) {
-        url = [NSURL URLWithString:resource.url];
-    }
-    else if ([title containsString:@"Call"]) {
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",resource.phone]];
-    }
-    if (url && [[UIApplication sharedApplication] canOpenURL:url]) {
+- (void) callPhoneNumberOfResource:(SSUResourcesEntry *)resource {
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",resource.phone]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+    } else {
+        SSULogError(@"Unable to call resource phone number: %@", resource.phone);
+    }
+}
+
+- (void) openURLOfResource:(SSUResourcesEntry *)resource {
+    NSURL * url = [NSURL URLWithString:resource.url];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    } else {
+        SSULogError(@"Unable to open resource URL: %@", resource.url);
     }
 }
 

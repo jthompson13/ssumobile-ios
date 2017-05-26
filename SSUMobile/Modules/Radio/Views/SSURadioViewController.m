@@ -22,7 +22,7 @@ static NSString * SSURadioPlayerLoadingMessage = @"Loading...";
 static NSString * SSURadioButtonImagePlay = @"radio_play";
 static NSString * SSURadioButtonImagePause = @"radio_pause";
 
-@interface SSURadioViewController() <UIActionSheetDelegate>
+@interface SSURadioViewController()
 
 @property (nonatomic,getter=isPlaying) BOOL playing;
 
@@ -271,27 +271,23 @@ static NSString * SSURadioButtonImagePause = @"radio_pause";
 }
 
 #pragma mark -
-#pragma mark - UIActionSheetDelegate
+#pragma mark - SSU Radio Webpage
 
 /**
- UIActionSheetDelegate method, called when the user presses any of the action sheet buttons
+ Opens the SSU Radio webpage
  */
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void) openSSURadioHomepage
 {
-    if (buttonIndex != actionSheet.cancelButtonIndex)
-    {
-        NSURL * url = [NSURL URLWithString:[[SSUConfiguration sharedInstance] stringForKey:SSURadioWebsiteURLKey]];
-        if (NSStringFromClass([SFSafariViewController class])) {
-            SFSafariViewController * vc = [[SFSafariViewController alloc] initWithURL:url
-                                                              entersReaderIfAvailable:NO];
-            vc.preferredBarTintColor = SSU_BLUE_COLOR;
-            [self presentViewController:vc animated:YES completion:NULL];
-        }
-        else {
-            SSUWebViewController* controller = [SSUWebViewController webViewController];
-            controller.urlToLoad = url;
-            [self.navigationController pushViewController:controller animated:YES];
-        }
+    NSURL * url = [NSURL URLWithString:[[SSUConfiguration sharedInstance] stringForKey:SSURadioWebsiteURLKey]];
+    if (NSStringFromClass([SFSafariViewController class])) {
+        SFSafariViewController * vc = [[SFSafariViewController alloc] initWithURL:url
+                                                          entersReaderIfAvailable:NO];
+        vc.preferredBarTintColor = SSU_BLUE_COLOR;
+        [self presentViewController:vc animated:YES completion:NULL];
+    } else {
+        SSUWebViewController* controller = [SSUWebViewController webViewController];
+        controller.urlToLoad = url;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -302,8 +298,12 @@ static NSString * SSURadioButtonImagePause = @"radio_pause";
 {
     NSString * urlString = [[SSUConfiguration sharedInstance] stringForKey:SSURadioWebsiteURLKey];
     NSString * buttonTitle = [NSString stringWithFormat:@"Open %@", urlString];
-    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:buttonTitle, nil];
-    [actionSheet showInView:self.view];
+    UIAlertController * controller = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [controller addAction:[UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self openSSURadioHomepage];
+    }]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 

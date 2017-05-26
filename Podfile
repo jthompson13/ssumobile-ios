@@ -1,5 +1,5 @@
 
-platform :ios, "10.0"
+platform :ios, "8.4"
 
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -15,7 +15,7 @@ target "SSUMobile" do
     pod 'Masonry'
     pod 'MJDijkstra', '~> 1.0.0'
     pod 'Mockingjay/Core', '~> 2.0'
-    pod 'CocoaLumberjack/Swift', '~> 3.1'
+    pod 'CocoaLumberjack/Swift', '~> 3.2'
     pod 'SimpleKeychain', '~> 0.6'
     pod 'SnapKit', '~> 3.2'
     pod 'SwiftyJSON', '~> 3.1'

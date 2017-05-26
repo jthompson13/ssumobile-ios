@@ -30,9 +30,3 @@ static const DDLogLevel ddLogLevel = DDLogLevelError;
 #define SSULogDebug(frmt, ...)      DDLogDebug(frmt, ##__VA_ARGS__)
 #define SSULogVerbose(frmt, ...)    DDLogVerbose(frmt, ##__VA_ARGS__)
 #endif
-
-@interface SSULogging : NSObject
-
-+ (void) setupLogging;
-
-@end

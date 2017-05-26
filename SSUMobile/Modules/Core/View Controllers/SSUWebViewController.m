@@ -13,7 +13,7 @@
 
 static NSString * const kStoryboardName = @"SSUWebViewController";
 
-@interface SSUWebViewController () <UIActionSheetDelegate, WKNavigationDelegate>
+@interface SSUWebViewController () <WKNavigationDelegate>
 
 @property (nonatomic) WKWebView * webview;
 @property (nonatomic) IBOutlet UIToolbar * toolbar;
@@ -102,21 +102,13 @@ static NSString * const kStoryboardName = @"SSUWebViewController";
 }
 
 - (void) didPressActionButton:(UIBarButtonItem *)sender {
-    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                              delegate:self
-                                                     cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:nil
-                                                     otherButtonTitles:@"Open in Safari", nil];
-    [actionSheet showInView:self.view];
-}
-
-#pragma mark - UIActionSheet
-
-- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != actionSheet.cancelButtonIndex) {
+    UIAlertController * controller = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [controller addAction:[UIAlertAction actionWithTitle:@"Open in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([[UIApplication sharedApplication] canOpenURL:self.urlToLoad])
             [[UIApplication sharedApplication] openURL:self.urlToLoad];
-    }
+    }]];
+    [controller addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 #pragma mark - UIWebView

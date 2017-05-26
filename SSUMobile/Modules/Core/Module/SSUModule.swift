@@ -30,8 +30,10 @@ protocol SSUModuleUI: SSUModule {
     /** The module's initial view controller */
     func initialViewController() -> UIViewController
     /**
-     Return YES if your module is available, or NO if the functionality is not available or you do not
-     need to present a view controller to the user (ex. just going to open a link in Safari
+     Return true if your module is available, or false if the functionality is not available or you do not
+     need to present a view controller to the user (ex. just going to open a link in Safari)
+     
+     If this function is implemented and returns false, no navigation action will take place.
      */
     @objc optional func shouldNavigateToModule() -> Bool
 

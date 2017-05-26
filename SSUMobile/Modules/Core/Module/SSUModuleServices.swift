@@ -11,6 +11,11 @@ import Foundation
 let SSUModulesEnabledKey = "edu.sonoma.modules.enabled"
 let SSUModulesDidLoadNotification = Notification.Name("edu.sonoma.modules.loaded.notification")
 
+/**
+ Handles the installation and querying of installed modules.
+ 
+ To use a new module, it must be added to the list of supported modules.
+ */
 class SSUModuleServices: NSObject {
     
     @objc(sharedInstance)

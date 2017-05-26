@@ -1,6 +1,6 @@
 PODS:
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Swift (3.1.0):
+  - CocoaLumberjack/Default (3.2.0)
+  - CocoaLumberjack/Swift (3.2.0):
     - CocoaLumberjack/Default
   - FSCalendar (2.7.4)
   - Kingfisher (3.6.0)
@@ -20,7 +20,7 @@ PODS:
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
-  - CocoaLumberjack/Swift (~> 3.1)
+  - CocoaLumberjack/Swift (~> 3.2)
   - FSCalendar (~> 2.7.4)
   - Kingfisher (~> 3.6)
   - Masonry
@@ -36,7 +36,7 @@ DEPENDENCIES:
   - SwiftyJSON (~> 3.1)
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
+  CocoaLumberjack: 9b4aed7073d242f29cc2f62068d995faf67f703a
   FSCalendar: e95995a746acae531c4a7dd636b8393233125ec5
   Kingfisher: 300035f9a40634dc9b452d946c9f22250688fecd
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
@@ -51,6 +51,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
-PODFILE CHECKSUM: 6828750a86dd0c704c2b289c7c04da8f6c98698f
+PODFILE CHECKSUM: 1139afee1cbb270f868c6bad5421dbbd9c2eb50d
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
