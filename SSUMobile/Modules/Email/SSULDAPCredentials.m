@@ -7,7 +7,7 @@
 //
 
 #import "SSULDAPCredentials.h"
-#import "SSUConfiguration.h"
+#import "SSUMobile-Swift.h"
 #import <SimpleKeychain/SimpleKeychain.h>
 
 static NSString * kUsernameKey = @"SSUEmailUsername";

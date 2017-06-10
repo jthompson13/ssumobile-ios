@@ -35,7 +35,7 @@ class SSUAppDelegate: UIResponder, UIApplicationDelegate {
             clearLocalDatabases()
             SSUModuleServices.instance.setupAll()
             showWelcomeMessage(completion: {
-                SSUConfiguration.sharedInstance().setBool(false, forKey: self.firstLaunchKey())
+                SSUConfiguration.instance.set(false, forKey: self.firstLaunchKey())
                 SSUModuleServices.instance.updateAll()
                 self.loadRemoteConfiguration()
             })
@@ -83,11 +83,8 @@ class SSUAppDelegate: UIResponder, UIApplicationDelegate {
             SSUDirectoryDisplayOrderKey: kSSUFirstLast.rawValue,
             firstLaunchKey(): true
         ]
-        SSUConfiguration.sharedInstance().registerDefaults(userDefaults)
-        // Load JSON defaults included in app bundle
-        if let path = Bundle.main.path(forResource: "defaults.json", ofType: nil) {
-            SSUConfiguration.sharedInstance().loadDefaults(fromFilePath: path)
-        }
+        SSUConfiguration.instance.registerDefaults(userDefaults)
+        SSUConfiguration.instance.registerDefaults(fromFilename: "defaults.json")
     }
     
     func loadRemoteConfiguration() {
@@ -108,7 +105,7 @@ class SSUAppDelegate: UIResponder, UIApplicationDelegate {
             let data = try! Data(contentsOf: fileURL)
             MockingjayProtocol.addStub(matcher: uri(configURL.absoluteString), builder: jsonData(data))
         }
-        SSUConfiguration.sharedInstance().load(from: configURL) { (error) in
+        SSUConfiguration.instance.loadFrom(url: configURL) { (error) in
             if let error = error {
                 SSULogging.logError("Error loading config: \(error)")
             } else {
@@ -128,7 +125,7 @@ class SSUAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func isFirstLaunchForCurrentVersion() -> Bool {
-        return SSUConfiguration.sharedInstance().bool(forKey: firstLaunchKey())
+        return SSUConfiguration.instance.bool(forKey: firstLaunchKey())
     }
     
     

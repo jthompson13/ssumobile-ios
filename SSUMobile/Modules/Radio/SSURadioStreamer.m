@@ -10,7 +10,7 @@
 
 #import "SSURadioStreamer.h"
 #import "SSULogging.h"
-#import "SSUConfiguration.h"
+#import "SSUMobile-Swift.h"
 
 static NSString * SSURadioNowPlayingSongTitle = @"KSUN Radio";
 static NSString * SSURadioNowPlayingSongAlbum = @"Sonoma State University";

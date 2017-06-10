@@ -28,7 +28,7 @@ class SSUModuleLoadingTests: XCTestCase {
         let services = self.services!
         services.loadModules()
         
-        let moduleNames = SSUConfiguration.sharedInstance().stringArray(forKey: SSUModulesEnabledKey)!
+        let moduleNames = SSUConfiguration.instance.stringArray(forKey: SSUModulesEnabledKey)!
         for identifier in moduleNames {
             expect(services.getModule(identifier: identifier)).toNot(beNil())
         }

@@ -39,10 +39,10 @@ class SSUEmailModule: SSUModuleBase, SSUModuleUI {
     }
     
     func shouldNavigateToModule() -> Bool {
-        if !SSUConfiguration.sharedInstance().bool(forKey: SSUEmailLoginEnabledKey) {
+        if !SSUConfiguration.instance.bool(forKey: SSUEmailLoginEnabledKey) {
             // The custom login must be broken (ex. something changed on Sonoma's website)
             // so we will show the user the webpage instead
-            if let urlString = SSUConfiguration.sharedInstance().string(forKey: SSUEmailLDAPURLKey),
+            if let urlString = SSUConfiguration.instance.string(forKey: SSUEmailLDAPURLKey),
                 let url = URL(string:urlString) {
                 UIApplication.shared.openURL(url)
             }

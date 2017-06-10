@@ -18,7 +18,7 @@ extension SSUConfiguration {
         get {
             return date(forKey: Keys.lastUpdate)
         } set {
-            setDate(newValue, forKey: Keys.lastUpdate)
+            set(newValue, forKey: Keys.lastUpdate)
         }
     }
 }

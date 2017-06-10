@@ -41,13 +41,13 @@ class SSUResourcesModule: SSUCoreDataModuleBase, SSUModuleUI {
     
     func updateSections(completion: (() -> Void)? = nil) {
         SSULogging.logDebug("Update Resource Sections");
-        let lastUpdate = SSUConfiguration.sharedInstance().date(forKey: SSUResourcesSectionsUpdatedDateKey)
+        let lastUpdate = SSUConfiguration.instance.date(forKey: SSUResourcesSectionsUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("ssumobile/resources/section", since: lastUpdate) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while updating Resources: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUResourcesSectionsUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUResourcesSectionsUpdatedDateKey)
                 self.buildSections(json: json)
                 completion?()
             }
@@ -58,13 +58,13 @@ class SSUResourcesModule: SSUCoreDataModuleBase, SSUModuleUI {
     
     func updateResources(completion: (() -> Void)? = nil) {
         SSULogging.logDebug("Update Resource resources");
-        let lastUpdate = SSUConfiguration.sharedInstance().date(forKey: SSUResourcesResourcesUpdatedDateKey)
+        let lastUpdate = SSUConfiguration.instance.date(forKey: SSUResourcesResourcesUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("ssumobile/resources/resource", since: lastUpdate) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while updating Resources: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUResourcesResourcesUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUResourcesResourcesUpdatedDateKey)
                 self.buildResources(json: json)
                 completion?()
             }

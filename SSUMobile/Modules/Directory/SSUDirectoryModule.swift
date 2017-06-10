@@ -43,13 +43,13 @@ class SSUDirectoryModule: SSUCoreDataModuleBase, SSUModuleUI, SSUSpotlightSuppor
     
     
     func updatePeople(completion: (() -> Void)? = nil) {
-        let date = SSUConfiguration.sharedInstance().date(forKey:SSUDirectoryPersonUpdatedDateKey)
+        let date = SSUConfiguration.instance.date(forKey:SSUDirectoryPersonUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("directory/person", since:date) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Directory People: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUDirectoryPersonUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUDirectoryPersonUpdatedDateKey)
                 self.buildPeople(json) {
                     completion?()
                 }
@@ -58,13 +58,13 @@ class SSUDirectoryModule: SSUCoreDataModuleBase, SSUModuleUI, SSUSpotlightSuppor
     }
     
     func updateDepartments(completion: (() -> Void)? = nil) {
-        let date = SSUConfiguration.sharedInstance().date(forKey:SSUDirectoryDepartmentUpdatedDateKey)
+        let date = SSUConfiguration.instance.date(forKey:SSUDirectoryDepartmentUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("directory/department", since:date) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Directory departments: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUDirectoryDepartmentUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUDirectoryDepartmentUpdatedDateKey)
                 self.buildDepartment(json) {
                     completion?()
                 }
@@ -73,13 +73,13 @@ class SSUDirectoryModule: SSUCoreDataModuleBase, SSUModuleUI, SSUSpotlightSuppor
     }
     
     func updateBuildings(completion: (() -> Void)? = nil) {
-        let date = SSUConfiguration.sharedInstance().date(forKey:SSUDirectoryBuildingUpdatedDateKey)
+        let date = SSUConfiguration.instance.date(forKey:SSUDirectoryBuildingUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("directory/building", since:date) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Directory buildings: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUDirectoryBuildingUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUDirectoryBuildingUpdatedDateKey)
                 self.buildBuildings(json) {
                     completion?()
                 }
@@ -88,13 +88,13 @@ class SSUDirectoryModule: SSUCoreDataModuleBase, SSUModuleUI, SSUSpotlightSuppor
     }
 
     func updateSchools(completion: (() -> Void)? = nil) {
-        let date = SSUConfiguration.sharedInstance().date(forKey:SSUDirectorySchoolUpdatedDateKey)
+        let date = SSUConfiguration.instance.date(forKey:SSUDirectorySchoolUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("directory/school", since:date) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Directory schools: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUDirectorySchoolUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUDirectorySchoolUpdatedDateKey)
                 self.buildSchools(json) {
                     completion?()
                 }

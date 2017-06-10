@@ -49,7 +49,7 @@ class SSUModuleServices: NSObject {
     }()
     
     private var identifiers: [String] {
-        var ids = SSUConfiguration.sharedInstance().stringArray(forKey: SSUModulesEnabledKey) ?? []
+        var ids = SSUConfiguration.instance.stringArray(forKey: SSUModulesEnabledKey) ?? []
         #if DEBUG
         ids.append("debug")
         #endif

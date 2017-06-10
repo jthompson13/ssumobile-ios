@@ -19,7 +19,7 @@ extension SSUConfiguration {
         get {
             return date(forKey: Keys.feedbackDate) ?? Date.distantPast
         } set {
-            setDate(newValue, forKey: Keys.feedbackDate)
+            set(newValue, forKey: Keys.feedbackDate)
         }
     }
 }

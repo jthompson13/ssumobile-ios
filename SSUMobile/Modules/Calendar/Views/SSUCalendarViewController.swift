@@ -68,7 +68,7 @@ class SSUCalendarViewController: UIViewController, FSCalendarDataSource, FSCalen
             calendarView.select(Date())
         }
         
-        if let lastUpdate = SSUConfiguration.sharedInstance().calendarLastUpdate {
+        if let lastUpdate = SSUConfiguration.instance.calendarLastUpdate {
             let interval: TimeInterval = -1 * 60 * 5
             if lastUpdate.timeIntervalSinceNow <= interval {
                 refresh()

@@ -39,13 +39,13 @@ class SSUMapModule: SSUCoreDataModuleBase, SSUModuleUI {
     }
     
     func updatePoints(completion: (() -> Void)? = nil) {
-        let date = SSUConfiguration.sharedInstance().date(forKey:SSUMapPointsUpdatedDateKey)
+        let date = SSUConfiguration.instance.date(forKey:SSUMapPointsUpdatedDateKey)
         SSUMoonlightCommunicator.getJSONFromPath("ssumobile/map/point/", since:date) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while attemping to update Map points: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUMapPointsUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUMapPointsUpdatedDateKey)
                 self.buildPoints(json) {
                     completion?()
                 }
@@ -59,7 +59,7 @@ class SSUMapModule: SSUCoreDataModuleBase, SSUModuleUI {
                 SSULogging.logError("Error while attemping to update Map perimeters: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUMapPerimetersUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUMapPerimetersUpdatedDateKey)
                 self.buildPerimeters(json) {
                     completion?()
                 }
@@ -73,7 +73,7 @@ class SSUMapModule: SSUCoreDataModuleBase, SSUModuleUI {
                 SSULogging.logError("Error while attemping to update Map connections: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().setDate(Date(), forKey: SSUMapPerimetersUpdatedDateKey)
+                SSUConfiguration.instance.set(Date(), forKey: SSUMapPerimetersUpdatedDateKey)
                 self.buildConnections(json) {
                     completion?()
                 }

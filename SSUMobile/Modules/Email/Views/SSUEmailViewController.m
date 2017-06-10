@@ -11,7 +11,6 @@
 #import "SSUMoonlightCommunicator.h"
 #import "SSUEmailLoginViewController.h"
 #import "SSULDAPCredentials.h"
-#import "SSUConfiguration.h"
 #import "SSUMobile-Swift.h"
 
 #import <MBProgressHUD/MBProgressHUD.h>

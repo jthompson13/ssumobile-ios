@@ -20,7 +20,7 @@ class SSUAboutModule: SSUModuleBase, SSUModuleUI {
      */
     var canSubmitFeedback: Bool {
         get {
-            let lastSubmission = SSUConfiguration.sharedInstance().lastFeedbackDate
+            let lastSubmission = SSUConfiguration.instance.lastFeedbackDate
             let timeSinceLast = abs(lastSubmission.timeIntervalSinceNow)
             return timeSinceLast >= feedbackSubmissionInterval
         }

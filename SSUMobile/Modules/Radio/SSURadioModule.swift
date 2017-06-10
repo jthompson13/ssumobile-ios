@@ -16,7 +16,7 @@ class SSURadioModule: SSUModuleBase, SSUModuleUI {
     
     @objc
     var radioScheduleURL: URL? {
-        if let urlString = SSUConfiguration.sharedInstance().string(forKey: SSURadioScheduleURLKey) {
+        if let urlString = SSUConfiguration.instance.string(forKey: SSURadioScheduleURLKey) {
             return URL(string: urlString)
         }
         return nil
@@ -48,8 +48,8 @@ class SSURadioModule: SSUModuleBase, SSUModuleUI {
     }
     
     func shouldNavigateToModule() -> Bool {
-        if !SSUConfiguration.sharedInstance().bool(forKey: SSURadioStreamEnabledKey) {
-            let message = SSUConfiguration.sharedInstance().string(forKey: SSURadioStreamDisabledMessageKey)
+        if !SSUConfiguration.instance.bool(forKey: SSURadioStreamEnabledKey) {
+            let message = SSUConfiguration.instance.string(forKey: SSURadioStreamDisabledMessageKey)
             let alert = UIAlertController(title: "Radio Unavailable", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
             SSUGlobalNavigationController.sharedInstance().present(alert, animated: true, completion: nil)

@@ -50,7 +50,7 @@ class SSUNewsViewController: SSUCoreDataTableViewController, SSUSelectionDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isToolbarHidden = false
-        if let lastUpdate = SSUConfiguration.sharedInstance().newsLastUpdate {
+        if let lastUpdate = SSUConfiguration.instance.newsLastUpdate {
             if abs(lastUpdate.timeIntervalSinceNow) > autoUpdateDelay {
                 refresh()
             }

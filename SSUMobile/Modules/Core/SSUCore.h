@@ -7,7 +7,6 @@
 //
 
 #import "NSString+html.h"
-#import "SSUConfiguration.h"
 #import "SSULogging.h"
 #import "SSUSharedUtilities.h"
 #import "SSUSpotlightServices.h"

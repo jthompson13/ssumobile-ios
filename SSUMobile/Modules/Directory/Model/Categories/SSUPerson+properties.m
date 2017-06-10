@@ -8,7 +8,7 @@
 
 #import "SSUPerson+properties.h"
 #import "SSUSettingsConstants.h"
-#import "SSUConfiguration.h"
+#import "SSUMobile-Swift.h"
 
 @implementation SSUPerson (properties)
 

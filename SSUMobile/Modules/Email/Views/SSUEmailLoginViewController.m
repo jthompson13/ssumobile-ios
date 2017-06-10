@@ -8,7 +8,6 @@
 
 #import "SSUEmailLoginViewController.h"
 #import "SSULDAPCredentials.h"
-#import "SSUConfiguration.h"
 #import "SSUMobile-Swift.h"
 
 @interface SSUEmailLoginViewController () <UITextFieldDelegate>

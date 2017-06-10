@@ -45,7 +45,6 @@
 		0733E0F81E57F99300C85A53 /* SSUCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0CD1E57F99300C85A53 /* SSUCommunicator.m */; };
 		0733E0F91E57F99300C85A53 /* SSUMoonlightCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0CF1E57F99300C85A53 /* SSUMoonlightCommunicator.m */; };
 		0733E0FA1E57F99300C85A53 /* NSString+html.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0D11E57F99300C85A53 /* NSString+html.m */; };
-		0733E0FB1E57F99300C85A53 /* SSUConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0D31E57F99300C85A53 /* SSUConfiguration.m */; };
 		0733E1001E57F99300C85A53 /* SSUSharedUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0DD1E57F99300C85A53 /* SSUSharedUtilities.m */; };
 		0733E1011E57F99300C85A53 /* SSUSpotlightServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0DF1E57F99300C85A53 /* SSUSpotlightServices.m */; };
 		0733E1021E57F99300C85A53 /* SSUCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0733E0E21E57F99300C85A53 /* SSUCoreDataTableViewController.m */; };
@@ -121,6 +120,7 @@
 		07D1A36418E2D52600B98565 /* SSUBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D1A36318E2D52600B98565 /* SSUBuilding.m */; };
 		07D1A36718E2D52600B98565 /* SSUDirectoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D1A36618E2D52600B98565 /* SSUDirectoryObject.m */; };
 		07D1A36A18E2D52600B98565 /* SSUDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D1A36918E2D52600B98565 /* SSUDepartment.m */; };
+		07DA76AA1EE4CA2E00042508 /* SSUConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA76A91EE4CA2E00042508 /* SSUConfiguration.swift */; };
 		07DFB6CB1B94511A00014CD0 /* SSUDepartment+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DFB6CA1B94511A00014CD0 /* SSUDepartment+properties.m */; };
 		07E8A21F1D6428C3007246A8 /* SSUDirectorySpotlightUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E8A21E1D6428C3007246A8 /* SSUDirectorySpotlightUtilities.m */; };
 		07EC53B91BBBAE3600EC60A5 /* SSUMapBuildingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC53B81BBBAE3600EC60A5 /* SSUMapBuildingDetailViewController.m */; };
@@ -246,8 +246,6 @@
 		0733E0CF1E57F99300C85A53 /* SSUMoonlightCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSUMoonlightCommunicator.m; sourceTree = "<group>"; };
 		0733E0D01E57F99300C85A53 /* NSString+html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+html.h"; sourceTree = "<group>"; };
 		0733E0D11E57F99300C85A53 /* NSString+html.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+html.m"; sourceTree = "<group>"; };
-		0733E0D21E57F99300C85A53 /* SSUConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSUConfiguration.h; sourceTree = "<group>"; };
-		0733E0D31E57F99300C85A53 /* SSUConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSUConfiguration.m; sourceTree = "<group>"; };
 		0733E0D61E57F99300C85A53 /* SSULogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSULogging.h; sourceTree = "<group>"; };
 		0733E0DC1E57F99300C85A53 /* SSUSharedUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSUSharedUtilities.h; sourceTree = "<group>"; };
 		0733E0DD1E57F99300C85A53 /* SSUSharedUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSUSharedUtilities.m; sourceTree = "<group>"; };
@@ -378,6 +376,7 @@
 		07D1A36618E2D52600B98565 /* SSUDirectoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSUDirectoryObject.m; sourceTree = "<group>"; };
 		07D1A36818E2D52600B98565 /* SSUDepartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SSUDepartment.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		07D1A36918E2D52600B98565 /* SSUDepartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SSUDepartment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		07DA76A91EE4CA2E00042508 /* SSUConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSUConfiguration.swift; sourceTree = "<group>"; };
 		07DFB6C91B94511A00014CD0 /* SSUDepartment+properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "SSUDepartment+properties.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		07DFB6CA1B94511A00014CD0 /* SSUDepartment+properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SSUDepartment+properties.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		07E8A2151D5FEF06007246A8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -621,8 +620,7 @@
 				0711E7F31E874A3000F9ACDE /* SSUCore.h */,
 				0733E0D01E57F99300C85A53 /* NSString+html.h */,
 				0733E0D11E57F99300C85A53 /* NSString+html.m */,
-				0733E0D21E57F99300C85A53 /* SSUConfiguration.h */,
-				0733E0D31E57F99300C85A53 /* SSUConfiguration.m */,
+				07DA76A91EE4CA2E00042508 /* SSUConfiguration.swift */,
 				0708BA781EA41E8300D67C85 /* SSUDateUtils.swift */,
 				0733E0D61E57F99300C85A53 /* SSULogging.h */,
 				0711E7FE1E87771100F9ACDE /* SSULogging+Swift.swift */,
@@ -1747,7 +1745,6 @@
 				78FE792C16CAA30B00626462 /* SSUSettingsConstants.m in Sources */,
 				0708BA7E1EA4286900D67C85 /* DateExtension.swift in Sources */,
 				07D1A36418E2D52600B98565 /* SSUBuilding.m in Sources */,
-				0733E0FB1E57F99300C85A53 /* SSUConfiguration.m in Sources */,
 				071E239E19E241BD00483138 /* SSUResourcesCell.m in Sources */,
 				784315F216D1DDDA00B8552F /* SSUOutdoorMapSuperViewController.m in Sources */,
 				7847DF6016E18165001B3CB7 /* SSUPerson+properties.m in Sources */,
@@ -1777,6 +1774,7 @@
 				0785A1A31E94B750007D16D4 /* SSUCalendarViewController.swift in Sources */,
 				0708BA791EA41E8300D67C85 /* SSUDateUtils.swift in Sources */,
 				0760DC331A5FD060001D04F9 /* SSUDirectoryDetailController.m in Sources */,
+				07DA76AA1EE4CA2E00042508 /* SSUConfiguration.swift in Sources */,
 				0733E0F91E57F99300C85A53 /* SSUMoonlightCommunicator.m in Sources */,
 				0708BA6A1EA09B1D00D67C85 /* SSUDebugModule.swift in Sources */,
 				78A5EDEA16E6E5D30078FBB0 /* BuildingPerimeter+properties.m in Sources */,

@@ -9,8 +9,8 @@
 #import "SSURadioViewController.h"
 #import "SSULogging.h"
 #import "SSURadioConstants.h"
-#import "SSUConfiguration.h"
 #import "SSUWebViewController.h"
+#import "SSUMobile-Swift.h"
 
 @import MediaPlayer;
 @import AVFoundation;

@@ -37,13 +37,13 @@ class SSUNewsModule: SSUCoreDataModuleBase, SSUModuleUI {
     
     func updateData(_ completion: (() -> Void)? = nil) {
         SSULogging.logDebug("Update News")
-        let lastUpdate = SSUConfiguration.sharedInstance().newsLastUpdate
+        let lastUpdate = SSUConfiguration.instance.newsLastUpdate
         SSUMoonlightCommunicator.getJSONFromPath("news/article", since: lastUpdate) { (response, json, error) in
             if let error = error {
                 SSULogging.logError("Error while updating News: \(error)")
                 completion?()
             } else {
-                SSUConfiguration.sharedInstance().newsLastUpdate = Date()
+                SSUConfiguration.instance.newsLastUpdate = Date()
                 self.build(json: json)
                 completion?()
             }

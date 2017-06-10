@@ -8,7 +8,6 @@
 
 #import "SSUCalendarViewController.h"
 #import "SSUSelectionController.h"
-#import "SSUConfiguration.h"
 #import "SSUMobile-Swift.h"
 
 #import <Masonry/Masonry.h>
