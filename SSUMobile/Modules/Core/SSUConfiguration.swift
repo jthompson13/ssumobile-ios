@@ -121,7 +121,7 @@ class SSUConfiguration: NSObject {
     @objc(setDate:forKey:)
     func set(_ date: Date?, forKey key: String) {
         withKVOChange(key) {
-            userDefaults.set(object, forKey: key)
+            userDefaults.set(date, forKey: key)
         }
     }
     
